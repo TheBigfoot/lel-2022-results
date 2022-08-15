@@ -13,14 +13,16 @@ id_name_pattern = re.compile(r'<h2>Rider\: (.+?) (.+?) </h2>')
 cp_pattern = re.compile(r'<tr> <td>(.+?)</td> <td style="text-align: right">(.+?) (\d\d:\d\d)</td> </tr>')
 
 
-def output_rider_list(riders):
+def output_rider_list(unsorted_riders):
     file_loader = FileSystemLoader('lel/templates')
     env = Environment(loader=file_loader)
     template = env.get_template("rider_list.html.jinja")
 
-    riders = read_all_riders('results/')
+    unsorted_riders = read_all_riders('results/')
 
-    print(template.render(riders=riders))
+    sorted_riders = sorted(unsorted_riders, key=lambda d: d['sorting_id'])
+
+    print(template.render(riders=sorted_riders))
 
 
 def read_all_riders(path):
@@ -37,7 +39,6 @@ def read_all_riders(path):
 
 
 def day_2_date(start_day):
-
     # import datetime
     # datetime.datetime.now().isoformat()
     # >>> 2020-03-20T14:28:23.382748
@@ -83,13 +84,22 @@ def get_total_time(checkpoints):
 
         total_time = end_datetime - start_datetime
 
-
         s = total_time.seconds + total_time.days * 24 * 3600
         hours, remainder = divmod(s, 3600)
         minutes, seconds = divmod(remainder, 60)
         return '{:02}:{:02}'.format(int(hours), int(minutes))
     else:
         return '00:00'
+
+
+def get_sorting_id(id):
+    letter_number_pattern = re.compile(r'([a-zA-Z]+)(\d+)')
+    id_group = letter_number_pattern.search(id)
+    number = id_group.group(2)
+    if int(number) < 10:
+        return id_group.group(1) + '0' + number
+    else:
+        return id
 
 
 def read_rider(path):
@@ -106,6 +116,7 @@ def read_rider(path):
         end_day = cp[1]
         end_time = cp[2]
     return {
+        "sorting_id": get_sorting_id(id_name_group.group(1)),
         "id": id_name_group.group(1),
         "name": id_name_group.group(2),
         "checkpoints": checkpoints,
