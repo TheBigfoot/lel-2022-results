@@ -1,0 +1,1 @@
+<h2>Rider: AJ29 Howard Goulbourne </h2> <h2>Checkins</h2> <table class="table table-striped"> <tr> <td>Start</td> <td style="text-align: right">Sunday 13:45</td> </tr> <tr> <td>St Ives Northbound</td> <td style="text-align: right">Sunday 18:24</td> </tr> </table>

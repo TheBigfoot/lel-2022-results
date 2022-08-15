@@ -1,0 +1,1 @@
+<h2>Rider: C39 Mhairi Simpson </h2> <h2>Checkins</h2> <table class="table table-striped"> <tr> <td>Start</td> <td style="text-align: right">Sunday 06:15</td> </tr> <tr> <td>St Ives Northbound</td> <td style="text-align: right">Sunday 12:02</td> </tr> <tr> <td>Boston Northbound</td> <td style="text-align: right">Sunday 18:26</td> </tr> </table>
