@@ -60,7 +60,7 @@
 
         function loadRiderDetails(riderId){
           console.log(riderId);
-          fetch('results/' + riderId + '.html')
+          fetch('results/' + riderId + '.txt')
           .then(response=> response.text())
           .then(text=> document.getElementById('rider_' + riderId).innerHTML = text);
         }
