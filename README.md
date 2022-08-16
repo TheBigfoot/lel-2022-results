@@ -43,7 +43,7 @@ The resulting table can now be found in the [`index.html`](index.html).
 
 ## TODOs
 
-- [ ] sort riders by their ID
+- [x] initially sorting of table by rider ID
 - [ ] allow for custom sorting
-- [ ] allow for searching within the table
+- [x] allow for searching within the table
 - [ ] link to individual results
