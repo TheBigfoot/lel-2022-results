@@ -24,7 +24,7 @@ do
       -H 'sec-ch-ua-mobile: ?0' \
       -H 'sec-ch-ua-platform: "macOS"' \
       --compressed)
-    if [[ $result =~ 'has not yet registered to ride' ]] || [[ $result =~ 'Rider not found' ]]; then
+    if [[ $result =~ 'has not yet registered to ride' ]] || [[ $result =~ 'Rider not found' ]] || [[ $result =~ 'No checkins to report' ]]; then
       echo "Invalid result, skipping"
     else
       echo "Valid result, saving into ${line}${i}.txt"
