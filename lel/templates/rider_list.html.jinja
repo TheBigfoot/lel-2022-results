@@ -29,7 +29,7 @@
             <tr>
                 <td class="col-1">{% if 'Debden Finish' == rider.final_checkpoint %}✅{% else %}❌{% endif %}</td>
                 <td class="col-1">{{ rider.id }}</td>
-                <td class="col-2">{{ rider.name }}</td>
+                <td class="col-2"><a id="myLink" title="Load rider details" href="#" onclick="loadRiderDetails('{{ rider.id }}');return false;">{{ rider.name }}</a><div id="rider_{{ rider.id }}"></div></td>
                 <td class="col-1 align-right"><p class="text-end">{% if rider.checkpoints is defined and rider.checkpoints|length > 0 %}{{ rider.checkpoints[0]['time']}}{% endif %}</p></td>
                 <td class="col-2">{{ rider.final_checkpoint }}</td>
                 <td class="col-1">{{ rider.end_day }}</td>
@@ -57,6 +57,13 @@
                 ordering: false
             });
         });
+
+        function loadRiderDetails(riderId){
+          console.log(riderId);
+          fetch('results/' + riderId + '.html')
+          .then(response=> response.text())
+          .then(text=> document.getElementById('rider_' + riderId).innerHTML = text);
+        }
     </script>
 </body>
 </html>
