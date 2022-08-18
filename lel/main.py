@@ -1,10 +1,14 @@
 import os.path
 import re
 from os import walk
-import datetime
 import dateutil.parser
+import logging
+import sys
 
 from jinja2 import Environment, FileSystemLoader
+
+logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
+logger = logging.getLogger('LEL_LOGGER')
 
 # <h2>Rider: AE11 Michael Lihs </h2>
 id_name_pattern = re.compile(r'<h2>Rider\: (.+?) (.+?) </h2>')
@@ -103,6 +107,7 @@ def get_sorting_id(id):
 
 
 def read_rider(path):
+    logger.debug(f"Reading result {path}")
     with open(path, 'r') as f:
         lines = f.read()
     id_name_group = id_name_pattern.search(lines)

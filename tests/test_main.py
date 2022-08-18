@@ -22,6 +22,28 @@ def test_read_user_returns_expexted_data_upon_finished_race():
     assert result.get('total_time') == '123:56'
 
 
+def test_read_user_returns_expexted_data_for_riders_started_in_london():
+    result = read_rider('testdata/finished_user_london.html')
+    assert result.get('id') == 'LA1'
+    assert result.get('name') == 'Sampsa Puikkonen'
+
+    assert len(result.get('checkpoints')) == 20
+
+    assert result.get('checkpoints')[0].get('time') == '10:10'
+    assert result.get('checkpoints')[0].get('day') == 'Sunday'
+    assert result.get('checkpoints')[0].get('name') == 'St Ives Northbound'
+
+    assert result.get('checkpoints')[19].get('time') == '08:25'
+    assert result.get('checkpoints')[19].get('day') == 'Friday'
+    assert result.get('checkpoints')[19].get('name') == 'Debden Finish'
+
+    assert result.get('final_checkpoint') == 'Debden Finish'
+    assert result.get('end_day') == 'Friday'
+    assert result.get('end_time') == '08:25'
+
+    assert result.get('total_time') == '118:15'
+
+
 def test_read_user_returns_expexted_data_upon_scratched_race():
     result = read_rider('testdata/unfinished_user.html')
     assert result.get('id') == 'AB35'

@@ -5,3 +5,4 @@ __pycache__
 .DS_Store
 build
 tmp
+get_results_with_cookie.sh
